@@ -11,9 +11,9 @@ snakemake -s full_pipeline_snakefile all \
   --cluster "sbatch --time=03:30:00 \
              --gres=gpu:rtx4090:1 \
              --cpus-per-task=16 \
-             --mem=20GB \
+             --mem=80GB \
              --output=/home/nbahou/myimaging/scDINO/slurm_logs/slurm_output_%j.txt \
              --error=/home/nbahou/myimaging/scDINO/slurm_logs/slurm_error_%j.txt" \
-  --latency-wait 45 \
+  --latency-wait 90 \
   --rerun-incomplete \
   --forceall

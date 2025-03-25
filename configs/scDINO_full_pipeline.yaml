@@ -1,7 +1,7 @@
 meta:
-  name_of_run: "scDINO_test_1"
+  name_of_run: "scDINO_test_5"
   output_dir: "/home/nbahou/myimaging/scDINO/output"
-  dataset_dir: "/home/nbahou/myimaging/apoDet/data/windows_test"
+  dataset_dir: "/home/nbahou/myimaging/apoDet/data/windows_48"
   folder_depth_for_labels: 0 # 0 is the folder where the images are, 1 is the folder above, etc.
   train_datasetsplit_fraction: 0.8
   seed: 40
@@ -38,9 +38,10 @@ train_scDINO:
     min_lr: 0.000001
     optimizer: "adamw"
     drop_path_rate: 0.1
-    global_crops_scale: !!python/tuple [0.14, 1.0]
+    global_crops_scale: !!python/tuple [0.14, 1.0]    #
     local_crops_number: 8
-    local_crops_scale: !!python/tuple [0.05, 0.14]
+    local_crops_scale: !!python/tuple [0.05, 0.14]    #
+    # out_dim: 1120  Lucien put this in his code
 
 downstream_analyses:
   compute_cls_features:
@@ -49,7 +50,7 @@ downstream_analyses:
     batch_size_per_gpu: 12  #24
     num_workers: 8
     checkpoint_key: teacher
-    resize: True
+    resize: False    # True   was true before, Now did 48x48 crops by myself
     resize_length: 48 #224 #only used if resize is True
   attention_visualisation:
     num_images_per_class: 1
